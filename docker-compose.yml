@@ -1,0 +1,19 @@
+version: '3.4'
+
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server
+    environment:
+      ACCEPT_EULA: Y
+      SA_PASSWORD: "Teste123@456"
+    ports:
+      - "1433:1433"
+    volumes:
+      - ./CreateDatabase.sql:/docker-entrypoint-initdb.d/CreateDatabase.sql
+    command:
+      - /opt/mssql/bin/sqlservr
+  variacaoativofixo.api:
+    image: ${DOCKER_REGISTRY-}variacaoativofixoapi
+    build:
+      context: .
+      dockerfile: VariacaoAtivoFixo/Dockerfile
