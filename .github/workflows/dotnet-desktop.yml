@@ -18,7 +18,7 @@ jobs:
                              # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
 
     env:
-      Solution_Name: VariacaoAtivoFixo.sln
+      Solution_Name: VariacaoAtivoFixo.sln -c Release
       Test_Project_Path: VariacaoAtivoFixo.Test
 
     steps:
