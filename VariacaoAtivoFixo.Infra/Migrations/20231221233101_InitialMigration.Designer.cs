@@ -12,7 +12,7 @@ using VariacaoAtivoFixo.Infra.Context;
 namespace VariacaoAtivoFixo.Infra.Migrations
 {
     [DbContext(typeof(VariacaoAtivoFixoContext))]
-    [Migration("20231221200853_InitialMigration")]
+    [Migration("20231221233101_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -34,11 +34,11 @@ namespace VariacaoAtivoFixo.Infra.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("Datetime");
 
                     b.Property<string>("Paper")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(20)");
 
                     b.Property<decimal>("Value")
                         .HasColumnType("decimal(18,2)");

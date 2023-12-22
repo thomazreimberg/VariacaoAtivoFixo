@@ -2,6 +2,6 @@
 {
     public class YahooFinanceData
     {
-        public required Chart Chart { get; set; }
+        public Chart Chart { get; set; }
     }
 }

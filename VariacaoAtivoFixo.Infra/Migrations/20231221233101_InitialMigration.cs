@@ -17,8 +17,8 @@ namespace VariacaoAtivoFixo.Infra.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Paper = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Paper = table.Column<string>(type: "varchar(20)", nullable: false),
+                    Date = table.Column<DateTime>(type: "Datetime", nullable: false),
                     Value = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     VariationFromPreviousDay = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     VariationOnTheFirstDate = table.Column<decimal>(type: "decimal(18,2)", nullable: false)

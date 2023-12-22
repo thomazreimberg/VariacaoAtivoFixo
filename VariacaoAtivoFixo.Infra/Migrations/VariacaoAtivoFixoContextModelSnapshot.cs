@@ -31,11 +31,11 @@ namespace VariacaoAtivoFixo.Infra.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("Datetime");
 
                     b.Property<string>("Paper")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(20)");
 
                     b.Property<decimal>("Value")
                         .HasColumnType("decimal(18,2)");

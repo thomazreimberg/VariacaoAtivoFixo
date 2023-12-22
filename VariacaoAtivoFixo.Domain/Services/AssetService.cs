@@ -4,6 +4,7 @@ using VariacaoAtivoFixo.Domain.Interfaces.Repositories;
 using VariacaoAtivoFixo.Domain.Interfaces.Services;
 using VariacaoAtivoFixo.Domain.Utils;
 using VariacaoAtivoFixo.Services.YahooFinance;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace VariacaoAtivoFixo.Domain.Services
 {
@@ -28,7 +29,7 @@ namespace VariacaoAtivoFixo.Domain.Services
 
             var assets = _assetRepository
                 .GetAssets(paper)
-                .Where(x => x.Date < DateTime.Now.Date.AddDays(-lSeed))
+                .Where(x => x.Date > DateTime.Now.Date.AddHours(-lSeed) && x.Paper == paper)
                 .OrderByDescending(o => o.Date)
                 .ToList();
 
@@ -52,13 +53,21 @@ namespace VariacaoAtivoFixo.Domain.Services
             var chartData = response.Chart.Result.FirstOrDefault() ?? throw new Exception($"No chart data found for paper {paper}");
 
             var newAssets = new List<IAsset>();
-
-            for (int i = 0; i < chartData.TimeStamp.Count; i++)
+            foreach (var item in chartData.TimeStamp
+                .Select((timeStamp, index) => new
+                {
+                    Date = Helper.UnixTimeStampToDateTime(timeStamp),
+                    OpenValue = chartData.Indicators.Quote[0].Open[index]
+                })
+                //.GroupBy(data => data.Date.Date)
+                //.Select(group => group.First())
+                .Take(30)
+                .ToList())
             {
                 var assetDto = _assetRepository.CreateFactory();
                 assetDto.Paper = paper;
-                assetDto.Date = Helper.UnixTimeStampToDateTime(chartData.TimeStamp[i]);
-                assetDto.Value = (decimal)chartData.Indicators.Quote[0].Open[i];
+                assetDto.Date = item.Date;
+                assetDto.Value = item.OpenValue == null ? 0 : (decimal)item.OpenValue;
                 assetDto.VariationFromPreviousDay = CalculateVariationFromPreviousDay(assets, assetDto.Value);
                 assetDto.VariationOnTheFirstDate = CalculateVariationFromFirstDate(newAssets, assetDto.Value);
 
@@ -111,9 +120,7 @@ namespace VariacaoAtivoFixo.Domain.Services
         {
             RuleFor(asset => asset.Paper).NotEmpty().NotNull();
             RuleFor(asset => asset.Date).NotEmpty().NotNull();
-            RuleFor(asset => asset.Value).Must(x => x > 0);
+            //RuleFor(asset => asset.Value).Must(x => x > 0);
         }
     }
-
-
 }

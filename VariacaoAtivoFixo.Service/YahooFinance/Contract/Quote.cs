@@ -2,10 +2,10 @@
 {
     public class Quote
     {
-        public required List<long?> Volume { get; set; }
-        public required List<double?> Close { get; set; }
-        public required List<double?> High { get; set; }
-        public required List<double?> Open { get; set; }
-        public required List<double?> Low { get; set; }
+        public List<long?>? Volume { get; set; }
+        public List<double?>? Close { get; set; }
+        public List<double?>? High { get; set; }
+        public List<double?>? Open { get; set; }
+        public List<double?>? Low { get; set; }
     }
 }

@@ -19,6 +19,15 @@ internal class Program
         var connectionString = builder.Configuration.GetConnectionString("VariacaoAtivoFixoDB");
         builder.Services.AddDbContext<VariacaoAtivoFixoContext>(x => x.UseSqlServer(connectionString));
 
+        #region Migration
+        using (var scope = builder.Services.BuildServiceProvider().CreateScope())
+        {
+            var dbContext = scope.ServiceProvider.GetRequiredService<VariacaoAtivoFixoContext>();
+            //dbContext.Database.GenerateCreateScript();
+            //dbContext.Database.Migrate();
+        }
+        #endregion
+
         #region Mapping
         builder.Services.AddAutoMapper(typeof(ModuleIOC));
         builder.Services.AddScoped<IAssetApplication, AssetApplication>();
