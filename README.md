@@ -1,7 +1,7 @@
 # Variação do Ativo
 ## Orientações
 ### Acessar pasta raiz do projeto e executar:
-**docker-compose up**
+**docker-compose up** (ter instalado o docker na máquina)
 
 
 # Teste
