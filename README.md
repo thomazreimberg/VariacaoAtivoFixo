@@ -1,12 +1,12 @@
 # Variação do Ativo
 ## Orientações
 ### Acessar pasta raiz do projeto e executar:
-1: **docker-compose up** ou executar o projeto com o Startup Project apontando para o arquivo docker-compose (necessário ter instalado o docker na máquina)
-2: Parar o projeto (o container deve continuar rodando).
-3: Configurar o projeto VariacaoAtivoFixo.API como Startup Project.
-4: Abrir o Package Manager Console e deixar o projeto de Infra como projeto inicial.
-5: Executar: Update-database
-6: Executar o projeto com o Startup Project apontando para o arquivo docker-compose.
+- 1: **docker-compose up** ou executar o projeto com o Startup Project apontando para o arquivo docker-compose (necessário ter instalado o docker na máquina)
+- 2: Parar o projeto (o container deve continuar rodando).
+- 3: Configurar o projeto VariacaoAtivoFixo.API como Startup Project.
+- 4: Abrir o Package Manager Console e deixar o projeto de Infra como projeto inicial.
+- 5: Executar: Update-database
+- 6: Executar o projeto com o Startup Project apontando para o arquivo docker-compose.
 
 # Teste
 
