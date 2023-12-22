@@ -29,7 +29,7 @@ namespace VariacaoAtivoFixo.Domain.Services
 
             var assets = _assetRepository
                 .GetAssets(paper)
-                .Where(x => x.Date > DateTime.Now.Date.AddHours(-lSeed) && x.Paper == paper)
+                .Where(x => x.Date > DateTime.Now.Date.AddDays(-lSeed) && x.Paper == paper)
                 .OrderByDescending(o => o.Date)
                 .ToList();
 
