@@ -20,12 +20,12 @@ internal class Program
         builder.Services.AddDbContext<VariacaoAtivoFixoContext>(x => x.UseSqlServer(connectionString));
 
         #region Migration
-        using (var scope = builder.Services.BuildServiceProvider().CreateScope())
-        {
-            var dbContext = scope.ServiceProvider.GetRequiredService<VariacaoAtivoFixoContext>();
-            //dbContext.Database.GenerateCreateScript();
-            //dbContext.Database.Migrate();
-        }
+        //using (var scope = builder.Services.BuildServiceProvider().CreateScope())
+        //{
+        //    var dbContext = scope.ServiceProvider.GetRequiredService<VariacaoAtivoFixoContext>();
+        //    dbContext.Database.GenerateCreateScript();
+        //    dbContext.Database.Migrate();
+        //}
         #endregion
 
         #region Mapping

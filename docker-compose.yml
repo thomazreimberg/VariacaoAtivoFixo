@@ -9,11 +9,14 @@ services:
     ports:
       - "1433:1433"
     volumes:
-      - ./CreateDatabase.sql:/docker-entrypoint-initdb.d/CreateDatabase.sql
+      - ./entrypoint.sh:/usr/src/app/entrypoint.sh
     command:
-      - /opt/mssql/bin/sqlservr
+      - /bin/bash
+      - /usr/src/app/entrypoint.sh
   variacaoativofixo.api:
-    image: ${DOCKER_REGISTRY-}variacaoativofixoapi
-    build:
-      context: .
-      dockerfile: VariacaoAtivoFixo/Dockerfile
+      depends_on:
+        - sqlserver
+      image: ${DOCKER_REGISTRY-}variacaoativofixoapi
+      build:
+        context: .
+        dockerfile: VariacaoAtivoFixo/Dockerfile
